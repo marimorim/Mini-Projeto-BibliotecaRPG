@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "biblioteca.h"
+#include "lendarios.h"
 
 //Inicializando Vetor
 void InicializarVetor(LivroMagico **biblioteca){
