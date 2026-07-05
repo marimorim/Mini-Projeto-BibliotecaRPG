@@ -102,7 +102,7 @@ Livro cadastrado com sucesso!
 |---|---|---|
 | `biblioteca.h` | [Maria Eduarda] | Structs e protótipos das funções |
 | `lendarios.h` | [Maria Eduarda] | Prototipo das funções dos lendários |
-| `consulta.c` | [Maria Eduarda] | `inicializarVetor`, `cadastrarLivro`, `deletarLivro` |
+| `consulta.c` | [Maria Eduarda] | `InicializarVetor`, `cadastrarLivro`, `deletarLivro` |
 | `consulta.c` | [Laura Macedo] | `mostrarLivro`, `editarLivro`, `listarTitulos` |
 | `arquivo.c` | [Amanda de Brito] | `criptografar`, `descriptografar`, `salvarBiblioteca`, `carregarBiblioteca`|
 | `organizar.c` | [Laura Macedo] | `mostrarLivroOrganizado`, `deveTrocar`, `organizarBiblioteca` |
