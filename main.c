@@ -1,25 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "biblioteca.h"
+#include "lendarios.h"
+
+#define ARQUIVO_BIBLIOTECA "biblioteca.dat"
 
 int main(void) {
     LivroMagico *biblioteca[TAM_BIBLIOTECA];
     int opcao;
     int id;
     int i;
+    int livros_carregados;
 
-    InicializarVetor(biblioteca);
+    /* Carrega a biblioteca salva anteriormente (se existir) */
+    carregarBiblioteca(biblioteca, ARQUIVO_BIBLIOTECA);
+
+    livros_carregados = 0;
+    for (i = 0; i < TAM_BIBLIOTECA; i++) {
+        if (biblioteca[i] != NULL) {
+            livros_carregados++;
+        }
+    }
+
+    printf("===== BIBLIOTECA MAGICA =====\n");
+    if (livros_carregados > 0) {
+        printf("Biblioteca carregada com %d livro(s) salvos anteriormente.\n", livros_carregados);
+    } else {
+        printf("Nenhuma biblioteca salva encontrada. Comecando do zero!\n");
+    }
 
     do {
-        printf("\n===== BIBLIOTECA MAGICA =====\n");
+        printf("\n===== MENU =====\n");
         printf("1 - Cadastrar livro\n");
         printf("2 - Deletar livro\n");
         printf("3 - Mostrar livro (buscar por ID)\n");
         printf("4 - Editar livro\n");
         printf("5 - Listar titulos\n");
         printf("6 - Organizar biblioteca (ano/autor/titulo)\n");
-        printf("0 - Sair\n");
-        printf("==============================\n");
+        printf("0 - Sair (salva automaticamente)\n");
+        printf("=================\n");
         printf("Escolha uma opcao: ");
 
         if (scanf("%d", &opcao) != 1) {
@@ -61,7 +80,7 @@ int main(void) {
                 break;
 
             case 0:
-                printf("Fechando a Biblioteca Magica... ate a proxima aventura!\n");
+                printf("Salvando biblioteca... ate a proxima aventura!\n");
                 break;
 
             default:
@@ -70,7 +89,10 @@ int main(void) {
 
     } while (opcao != 0);
 
-    /* libera toda a memoria alocada antes de encerrar o programa */
+    /* Salva a biblioteca em arquivo antes de encerrar */
+    salvarBiblioteca(biblioteca, ARQUIVO_BIBLIOTECA);
+
+    /* Libera toda a memoria alocada antes de encerrar o programa */
     for (i = 0; i < TAM_BIBLIOTECA; i++) {
         if (biblioteca[i] != NULL) {
             free(biblioteca[i]);
