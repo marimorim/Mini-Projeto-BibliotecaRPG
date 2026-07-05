@@ -4,8 +4,8 @@ Sistema em C que gerencia o inventário de livros mágicos de um jogo de RPG, co
 
 ## Integrantes do grupo
 
-- [Maria Eduarda Tavares Câmara Amorim] — Inventário
-- [Laura Teixeira Veloso Macedo] — Catálogo
+- [Maria Eduarda Tavares Câmara Amorim] — Inventário / Lendários
+- [Laura Teixeira Veloso Macedo] — Catálogo / Organização
 - [Maria Luiza Ribeiro Amaral] — Principal
 - [Amanda de Brito Silva] — Manipulação de Arquivos
 
@@ -57,6 +57,9 @@ gcc gerenciamento.c -o biblioteca
 gcc organizar.c -o biblioteca
 ```
 ```bash
+gcc lentadios.c -o biblioteca
+```
+```bash
 gcc main.c -o biblioteca
 ```
 
@@ -98,11 +101,13 @@ Livro cadastrado com sucesso!
 | Arquivo | Responsável | Conteúdo |
 |---|---|---|
 | `biblioteca.h` | [Maria Eduarda] | Structs e protótipos das funções |
+| `lendarios.h` | [Maria Eduarda] | Prototipo das funções dos lendários |
 | `consulta.c` | [Maria Eduarda] | `inicializarVetor`, `cadastrarLivro`, `deletarLivro` |
 | `consulta.c` | [Laura Macedo] | `mostrarLivro`, `editarLivro`, `listarTitulos` |
 | `arquivo.c` | [Amanda de Brito] | `criptografar`, `descriptografar`, `salvarBiblioteca`, `carregarBiblioteca`|
 | `organizar.c` | [Laura Macedo] | `mostrarLivroOrganizado`, `deveTrocar`, `organizarBiblioteca` |
-| `main.c` | [Maria Luiza] | menu principal |
+| `lendarios.c` | [Maria Eduarda] | `verificarLivroLendario` |
+| `main.c` | [Maria Luiza] | Menu principal |
 
 ## Vídeo de apresentação
 
