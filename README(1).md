@@ -326,7 +326,7 @@ Todos os casos abaixo foram executados de verdade no binário compilado
 |---|---|---|
 | `biblioteca.h` | [Maria Eduarda] | Structs e protótipos das funções |
 | `lendarios.h` | [Maria Eduarda] | Prototipo das funções dos lendários |
-| `consulta.c` | [Maria Eduarda] | `InicializarVetor`, `cadastrarLivro`, `deletarLivro` |
+| `cadastro.c` | [Maria Eduarda] | `InicializarVetor`, `cadastrarLivro`, `deletarLivro` |
 | `consulta.c` | [Laura Macedo] | `mostrarLivro`, `editarLivro`, `listarTitulos` |
 | `arquivo.c` | [Amanda de Brito] | `criptografar`, `descriptografar`, `salvarBiblioteca`, `carregarBiblioteca`|
 | `organizar.c` | [Laura Macedo] | `mostrarLivroOrganizado`, `deveTrocar`, `organizarBiblioteca` |
