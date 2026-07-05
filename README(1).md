@@ -74,27 +74,251 @@ O programa recebe o nome do arquivo de save como argumento:
 - Se o arquivo já existir, a biblioteca salva anteriormente será carregada automaticamente ao iniciar.
 - Se o arquivo não existir, o programa inicia com o inventário vazio e criará o arquivo ao salvar.
 
-## Exemplo de uso
+## Exemplo de uso(Casos de Teste — Biblioteca Mágica)
 
-```
-=== BIBLIOTECA MÁGICA ===
-1. Cadastrar livro
-2. Deletar livro
-3. Mostrar livro
-4. Editar livro
-5. Listar títulos
-6. Organizar livros
-7. Sair
-Escolha uma opção: 1
+Todos os casos abaixo foram executados de verdade no binário compilado
+(`gcc main.c cadastro.c consulta.c organizar.c arquivo.c lendarios.c -o biblioteca`)
 
-Digite o id do livro: 1
-Digite o título: O Grimório Perdido
-Digite o nome do autor: Elandra Vys
-...
-Livro cadastrado com sucesso!
-```
+---
 
-*(substituir pelo exemplo real do grupo, se quiserem mostrar mais casos)*
+  ## 1. Cadastrar livro (sucesso)
+    
+    ```
+    ===== MENU =====
+    1 - Cadastrar livro
+    2 - Deletar livro
+    3 - Mostrar livro (buscar por ID)
+    4 - Editar livro
+    5 - Listar titulos
+    6 - Organizar biblioteca (ano/autor/titulo)
+    0 - Sair (salva automaticamente)
+    =================
+    Escolha uma opcao: 1
+    Digite o ID do Livro: 1
+    Titulo: O Hobbit
+    Autor: J.R.R. Tolkien
+    Nascimento do Autor: 3 1 1892
+    Data de escrita do livro: 21 9 1937
+    Livro Colocado na Estante!
+    ```
+    
+  ## 2. Cadastrar livro (ID duplicado)
+    
+    ```
+    Escolha uma opcao: 1
+    Digite o ID do Livro: 1
+    Esse ID ja esta em uso :(
+    ```
+    
+  ## 3. Cadastrar livro (estante cheia)
+    
+    ```
+    Escolha uma opcao: 1
+    A estante esta cheia!
+    ```
+    *(ocorre quando as 100 posições da biblioteca já estão ocupadas)*
+    
+    ---
+    
+  ## 4. Deletar livro (sucesso)
+    
+    ```
+    Escolha uma opcao: 2
+    Digite o ID do livro a deletar: 1
+    O livro foi retirado da estante!
+    ```
+    
+  ## 5. Deletar livro (ID inexistente)
+    
+    ```
+    Escolha uma opcao: 2
+    Digite o ID do livro a deletar: 99
+    Livro não encontrado
+    ```
+    
+    ---
+    
+  ## 6. Mostrar livro (sucesso)
+    
+    ```
+    Escolha uma opcao: 3
+    Digite o ID do livro: 1
+    ID: 1
+    Titulo: O Hobbit - Edicao Ilustrada
+    Autor: J.R.R. Tolkien
+    Nascimento: 03/01/1892
+    Data de escrita: 21/09/1937
+    ```
+    
+  ## 7. Mostrar livro (ID inexistente)
+    
+    ```
+    Escolha uma opcao: 3
+    Digite o ID do livro: 99
+    Livro nao encontrado!
+    ```
+    
+    ---
+    
+  ## 8. Editar livro (sucesso)
+    
+    ```
+    Escolha uma opcao: 4
+    Digite o ID do livro a editar: 1
+    Novo titulo: O Hobbit - Edicao Ilustrada
+    Novo autor: J.R.R. Tolkien
+    Nova data de nascimento (dia mes ano): 3 1 1892
+    Nova data de escrita (dia mes ano): 21 9 1937
+    Livro atualizado com sucesso!
+    ```
+    
+    ## 9. Editar livro (ID inexistente)
+    
+    ```
+    Escolha uma opcao: 4
+    Digite o ID do livro a editar: 99
+    Livro nao encontrado!
+    ```
+    
+    ---
+    
+  ## 10. Listar títulos (biblioteca vazia)
+    
+    ```
+    Escolha uma opcao: 5
+    
+    ===== MENU =====
+    ```
+    *(nenhuma linha é exibida, o menu volta a aparecer normalmente)*
+    
+    ## 11. Listar títulos (com livros cadastrados)
+    
+    ```
+    Escolha uma opcao: 5
+    ID: 1
+    Titulo: O Hobbit
+    Autor: J.R.R. Tolkien
+    
+    ID: 2
+    Titulo: O Nome do Vento
+    Autor: Patrick Rothfuss
+    ```
+    
+    ---
+    
+  ## 12. Organizar biblioteca (vazia)
+    
+    ```
+    Escolha uma opcao: 6
+    A biblioteca esta vazia!
+    ```
+    
+  ## 13. Organizar biblioteca (apenas 1 livro)
+    
+    ```
+    Escolha uma opcao: 6
+    Existe apenas um livro na biblioteca!
+    ```
+    
+  ## 14. Organizar biblioteca (vários livros fora de ordem)
+    
+    ```
+    Escolha uma opcao: 6
+    
+    As estantes magicas foram reorganizadas!
+    Ordem usada: ano -> autor -> titulo
+    Livros encontrados: 3
+    Trocas realizadas: 1
+    
+    ID: 2
+    Ano: 2005
+    Autor: Autor A
+    Titulo: Alfa
+    
+    ID: 1
+    Ano: 2010
+    Autor: Autor Z
+    Titulo: Zorro
+    
+    ID: 3
+    Ano: 2015
+    Autor: Autor B
+    Titulo: Beta
+    ```
+    *(confirmado: ordenação correta por ano → autor → título)*
+    
+    ---
+    
+  ## 15. Easter egg — RPGs Lendários
+    
+    Cadastrando um livro com o título exato de um dos 5 RPGs lendários, aparece uma mensagem especial colorida logo após "Livro Colocado na Estante!":
+    
+    ```
+    Escolha uma opcao: 1
+    Digite o ID do Livro: 1
+    Titulo: Dungeons & Dragons
+    Autor: Gary Gygax
+    Nascimento do Autor: 27 7 1938
+    Data de escrita do livro: 1 1 1974
+    Livro Colocado na Estante!
+    O Dragao Ancestral despertou!
+    ```
+    
+    | Título exato | Mensagem exibida |
+    |---|---|
+    | `Dungeons & Dragons` | `O Dragao Ancestral despertou!` |
+    | `Tormenta` | `Uma nuvem rubra cobre Arton!` |
+    | `Ordem Paranormal` | `A membrana esta fraca!` |
+    | `Vampiro` | `A besta desperta nas sombras!` |
+    | `Call of Cthulhu` | `Algo desperta nas profundezas!` |
+    
+    Quando os 5 lendários já foram cadastrados na mesma execução, a última mensagem vem acompanhada de:
+    
+    ```
+     OS RPGs LENDARIOS FORAM ENCONTRADOS
+    A Biblioteca Magica lhe reconhece
+    ```
+    
+    Cadastrar o mesmo lendário duas vezes não repete a mensagem (cada um só conta uma vez).
+    
+    ---
+    
+  ## 16. Persistência em arquivo
+    
+    **Primeira vez que o programa roda (sem `biblioteca.dat` ainda):**
+    ```
+    ===== BIBLIOTECA MAGICA =====
+    Nenhuma biblioteca salva encontrada. Comecando do zero!
+    ```
+    
+    **Depois de cadastrar livros e sair (opção 0):**
+    ```
+    Escolha uma opcao: 0
+    Salvando biblioteca... ate a proxima aventura!
+    ```
+    *(o arquivo `biblioteca.dat` é criado/atualizado no disco, com título e autor criptografados)*
+    
+    **Abrindo o programa novamente:**
+    ```
+    ===== BIBLIOTECA MAGICA =====
+    Biblioteca carregada com 1 livro(s) salvos anteriormente.
+    ```
+    *(confirmado: os dados batem exatamente com o que foi cadastrado na execução anterior)*
+    
+    ---
+    
+  ## 17. Entrada inválida no menu
+    
+    ```
+    Escolha uma opcao: abc
+    Opcao invalida! Digite um numero.
+    ```
+    
+    ```
+    Escolha uma opcao: 9
+    Opcao invalida!
+    ```
+
 
 ## Organização dos arquivos
 
